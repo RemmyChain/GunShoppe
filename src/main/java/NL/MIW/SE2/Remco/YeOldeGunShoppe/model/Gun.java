@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Author: Remco Ketting
@@ -18,6 +19,11 @@ public class Gun {
     private Long gunID;
     private String gunName;
     private String ammoType;
+
+    @ManyToOne
+    private Ammo ammo;
+
+
 
 
 }

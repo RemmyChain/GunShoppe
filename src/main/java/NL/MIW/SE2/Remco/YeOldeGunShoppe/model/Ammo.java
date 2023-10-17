@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Author: Remco Ketting
@@ -19,6 +21,9 @@ public class Ammo {
     @Id @GeneratedValue
     private Long ammoId;
     private String ammoName;
+
+    @OneToMany(mappedBy = "ammo")
+    private List<Gun> usedByGuns;
 
 
 }

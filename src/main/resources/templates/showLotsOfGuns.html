@@ -23,7 +23,28 @@
         <td th:text="${gun.gunID}"></td>
         <td th:text="${gun.gunName}"></td>
         <td th:text="${gun.ammoType}"></td>
+
+    </tr>
+
+    <tr>
+        <th>
+            ammoId
+        </th>
+        <th>
+            ammoName
+        </th>
+
+
+    </tr>
+    <tr th:each="ammo : ${allAmmo}">
+        <td th:text="${ammo.ammoId}"></td>
+        <td th:text="${ammo.ammoName}"></td>
+
     </tr>
 </table>
+<a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
+<br>
+
+
 </body>
 </html>
