@@ -22,7 +22,7 @@
     <tr th:each="gun : ${allGuns}">
         <td th:text="${gun.gunID}"></td>
         <td th:text="${gun.gunName}"></td>
-        <td th:text="${gun.ammoType}"></td>
+        <td th:text="${gun.ammo.ammoName}"></td>
 
     </tr>
 
@@ -33,16 +33,22 @@
         <th>
             ammoName
         </th>
+        <th>
+            used by nr of guns
+        </th>
 
 
     </tr>
     <tr th:each="ammo : ${allAmmo}">
         <td th:text="${ammo.ammoId}"></td>
         <td th:text="${ammo.ammoName}"></td>
+        <td th:text="${ammo.getNumberOfGunsUsing()}"></td>
 
     </tr>
 </table>
 <a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
+<br>
+<a th:href="@{/ammo/new}">Why don't you add some ammo, we like ammo!</a>
 <br>
 
 

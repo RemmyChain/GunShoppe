@@ -25,5 +25,17 @@ public class Ammo {
     @OneToMany(mappedBy = "ammo")
     private List<Gun> usedByGuns;
 
+    public int getNumberOfGunsUsing() {
+        int count = 0;
+
+        for (Gun gun : usedByGuns) {
+
+            count++;
+
+        }
+
+        return count;
+    }
+
 
 }
