@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter ammunition types into the system</title>
+</head>
+<body>
+<form th:action="@{/ammo/new}" method="post" th:object="${ammo}">
+    <table>
+        <tr>
+            <th>Item Name</th>
+
+        </tr>
+        <tr>
+            <td><label>
+                <input type="text" th:field="*{ammoName}" />
+            </label>Name of ammunition</td>
+
+        </tr>
+    </table>
+
+    <input type="submit" value="Save ammo" />
+</form>
+
+</body>
+</html>
