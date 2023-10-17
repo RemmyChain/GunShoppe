@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Guns, lots and lots of guns!</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>
+            gunId
+        </th>
+        <th>
+            gunName
+        </th>
+        <th>
+            ammoType
+        </th>
+
+    </tr>
+    <tr th:each="gun : ${allGuns}">
+        <td th:text="${gun.gunID}"></td>
+        <td th:text="${gun.gunName}"></td>
+        <td th:text="${gun.ammoType}"></td>
+    </tr>
+</table>
+</body>
+</html>

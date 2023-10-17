@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Ye Guns Here</title>
+</head>
+<body>
+<h1>Create a new gun for fun and profit</h1>
+
+<form th:action="@{/gun/new}" method="post" th:object="${gun}">
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Ammunition Type</th>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{gunName}" /></td>
+            <td><input type="text" th:field="*{ammoType}" /></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save gun" />
+</form>
+
+</body>
+</html>
