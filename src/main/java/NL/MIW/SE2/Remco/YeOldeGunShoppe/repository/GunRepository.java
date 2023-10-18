@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
+
 /**
  * Author: Remco Ketting
  * Purpose of program: get and save guns

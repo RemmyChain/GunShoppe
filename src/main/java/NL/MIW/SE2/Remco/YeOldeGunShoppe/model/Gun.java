@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Getter @Setter
-public class Gun {
+public class Gun implements Comparable<Gun>{
     @Id @GeneratedValue
     private Long gunID;
     private String gunName;
@@ -24,6 +24,10 @@ public class Gun {
     private Ammo ammo;
 
 
+    @Override
+    public int compareTo(Gun otherGun) {
 
+        return this.getAmmo().getAmmoName().compareTo(otherGun.getAmmo().getAmmoName());
 
+    }
 }

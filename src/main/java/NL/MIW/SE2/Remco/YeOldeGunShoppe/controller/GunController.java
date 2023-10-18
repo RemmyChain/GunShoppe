@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,7 +32,9 @@ public class GunController {
 
   @GetMapping
   private String gunsLotsAndLotsOfGuns(Model model){
-    model.addAttribute("allGuns", gunRepository.findAll());
+    List<Gun> sortedGuns = gunRepository.findAll();
+    Collections.sort(sortedGuns);
+    model.addAttribute("allGuns", sortedGuns);
     model.addAttribute("allAmmo", ammoRepository.findAll());
 
     return "showLotsOfGuns";
