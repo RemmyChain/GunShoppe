@@ -17,6 +17,9 @@
         <th>
             ammoType
         </th>
+        <th>
+            Optional attachments
+        </th>
 
 
 
@@ -25,6 +28,7 @@
         <td th:text="${gun.gunID}"></td>
         <td th:text="${gun.gunName}"></td>
         <td th:text="${gun.ammo.ammoName}"></td>
+        <td th:text="${gun.displayAttachments}"></td>
 
     </tr>
     <tr><br></tr>

@@ -26,6 +26,14 @@
                     </option>
                 </select>
             </td>
+            <td>
+                <label for="attachmentField"></label><select id="attachmentField" th:field="*{attachments}" multiple>
+                <option th:each="attachment : ${attachmentList}"
+                        th:value="${attachment.attachmentId}"
+                        th:text="${attachment.attachmentName}">
+                </option>
+            </select>
+            </td>
         </tr>
     </table>
 
