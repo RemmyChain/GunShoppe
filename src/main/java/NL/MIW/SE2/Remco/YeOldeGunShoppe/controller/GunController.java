@@ -45,11 +45,13 @@ public class GunController {
   @PostMapping("/gun/new")
   private String saveOrUpdateGun(@ModelAttribute("gun") Gun gunToBeSaved, BindingResult result) {
     if (!result.hasErrors()) {
-      Optional<Ammo> ammoOptional = ammoRepository.findAmmoByAmmoName(gunToBeSaved.getAmmoType());
+      Optional<Ammo> ammoOptional = ammoRepository.findAmmoByAmmoName(gunToBeSaved.getAmmo().getAmmoName());
       if (ammoOptional.isPresent()) {
 
         gunToBeSaved.setAmmo(ammoOptional.get());
         gunRepository.save(gunToBeSaved);
+      } else {
+        return "redirect:/ammo/new";
       }
 
 

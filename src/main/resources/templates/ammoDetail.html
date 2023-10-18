@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ammo specifications</title>
+</head>
+<body>
+
+<h1>Specifications for ammunition type: <span th:text="${ammoToBeShown.ammoName}"></span></h1>
+
+<table>
+    <tr>
+        <td>Ammunition:</td>
+        <td th:text="${ammoToBeShown.ammoName}"></td>
+    </tr>
+
+    <tr>
+        <td>Used by guns:</td>
+        <td th:text="${ammoToBeShown.getNumberOfGunsUsing()}"></td>
+    </tr>
+    <tr th:each="gun : ${ammoToBeShown.usedByGuns}">
+        <td th:text="${gun.gunID}"></td>
+        <td th:text="${gun.gunName}"></td>
+
+
+    </tr>
+    <a href="/">BACK</a>
+
+</table>
+
+</body>
+</html>

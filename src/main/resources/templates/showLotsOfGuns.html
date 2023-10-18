@@ -25,7 +25,7 @@
         <td th:text="${gun.ammo.ammoName}"></td>
 
     </tr>
-
+    <tr><br></tr>
     <tr>
         <th>
             ammoId
@@ -42,12 +42,14 @@
     <tr th:each="ammo : ${allAmmo}">
         <td th:text="${ammo.ammoId}"></td>
         <td th:text="${ammo.ammoName}"></td>
+        <td><a th:href="@{/ammo/detail/{calibre}(calibre=${ammo.ammoName})}" th:text="${ammo.ammoName}"></a> </td>
         <td th:text="${ammo.getNumberOfGunsUsing()}"></td>
 
     </tr>
 </table>
-<a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
 <br>
+<a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
+<br><br>
 <a th:href="@{/ammo/new}">Why don't you add some ammo, we like ammo!</a>
 <br>
 

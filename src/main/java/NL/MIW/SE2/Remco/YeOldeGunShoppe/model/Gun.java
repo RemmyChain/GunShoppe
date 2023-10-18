@@ -18,7 +18,7 @@ public class Gun {
     @Id @GeneratedValue
     private Long gunID;
     private String gunName;
-    private String ammoType;
+
 
     @ManyToOne
     private Ammo ammo;
