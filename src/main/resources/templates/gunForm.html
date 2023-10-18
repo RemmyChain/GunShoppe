@@ -17,9 +17,15 @@
             <td><label>
                 <input type="text" th:field="*{gunName}" />
             </label>Gun Designation</td>
-            <td><label>
-                <input type="text" th:field="*{ammo.ammoName}" />
-            </label>Ammo Type</td>
+
+            <td>
+                <label for="ammoField"></label><select id="ammoField" th:field="*{ammo}" >
+                    <option th:each="ammo : ${ammoList}"
+                            th:value="${ammo.ammoId}"
+                            th:text="${ammo.ammoName}">
+                    </option>
+                </select>
+            </td>
         </tr>
     </table>
 

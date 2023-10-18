@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
@@ -38,6 +38,7 @@ public class GunController {
   @GetMapping("/gun/new")
   private String showGunForm(Model model) {
     model.addAttribute("gun", new Gun());
+    model.addAttribute("ammoList", ammoRepository.findAll());
 
     return "gunForm";
   }
@@ -45,17 +46,8 @@ public class GunController {
   @PostMapping("/gun/new")
   private String saveOrUpdateGun(@ModelAttribute("gun") Gun gunToBeSaved, BindingResult result) {
     if (!result.hasErrors()) {
-      Optional<Ammo> ammoOptional = ammoRepository.findAmmoByAmmoName(gunToBeSaved.getAmmo().getAmmoName());
-      if (ammoOptional.isPresent()) {
 
-        gunToBeSaved.setAmmo(ammoOptional.get());
         gunRepository.save(gunToBeSaved);
-      } else {
-        return "redirect:/ammo/new";
-      }
-
-
-
     }
 
     return "redirect:/";
