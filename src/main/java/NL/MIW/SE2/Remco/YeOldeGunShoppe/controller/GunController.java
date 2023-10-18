@@ -60,17 +60,6 @@ public class GunController {
 
     return "redirect:/";
   }
-  @GetMapping("/gun/new/{ammoId}")
-  private String createNewGun(@PathVariable("ammoId") Long ammoId) {
-    Optional<Ammo> ammoOptional = ammoRepository.findById(ammoId);
 
-    if (ammoOptional.isPresent()) {
-      Gun gun = new Gun();
-      gun.setAmmo(ammoOptional.get());
-      gunRepository.save(gun);
-    }
-
-    return "redirect:/";
-  }
 
 }
