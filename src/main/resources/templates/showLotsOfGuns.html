@@ -1,64 +1,76 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
     <title>Guns, lots and lots of guns!</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>
-            gunId
-        </th>
-        <th>
-            gunName
-        </th>
-        <th>
-            ammoType
-        </th>
-        <th>
-            Optional attachments
-        </th>
+
+<div th:replace="fragments/general :: navbar"></div>
 
 
 
-    </tr>
-    <tr th:each="gun : ${allGuns}">
-        <td th:text="${gun.gunID}"></td>
-        <td th:text="${gun.gunName}"></td>
-        <td th:text="${gun.ammo.ammoName}"></td>
-        <td th:text="${gun.displayAttachments}"></td>
-
-    </tr>
-    <tr><br></tr>
-    <tr>
-        <th>
-            ammoId
-        </th>
-        <th>
-            ammoName
-        </th>
-        <th>
-            used by nr of guns
-        </th>
+<div class="container">
 
 
-    </tr>
-    <tr th:each="ammo : ${allAmmo}">
-        <td th:text="${ammo.ammoId}"></td>
-        <td th:text="${ammo.ammoName}"></td>
-        <td><a th:href="@{/ammo/detail/{calibre}(calibre=${ammo.ammoName})}" th:text="${ammo.ammoName}"></a> </td>
-        <td th:text="${ammo.getNumberOfGunsUsing()}"></td>
+    <table>
+        <tr>
+            <th>
+                gunId
+            </th>
+            <th>
+                gunName
+            </th>
+            <th>
+                ammoType
+            </th>
+            <th>
+                Optional attachments
+            </th>
 
-    </tr>
-</table>
-<br>
-<a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
-<br><br>
-<a th:href="@{/ammo/new}">Why don't you add some ammo, we like ammo!</a>
-<br>
 
+
+        </tr>
+        <tr th:each="gun : ${allGuns}">
+            <td th:text="${gun.gunID}"></td>
+            <td th:text="${gun.gunName}"></td>
+            <td th:text="${gun.ammo.ammoName}"></td>
+            <td th:text="${gun.displayAttachments}"></td>
+
+        </tr>
+        <tr><br></tr>
+        <tr>
+            <th>
+                ammoId
+            </th>
+            <th>
+                ammoName
+            </th>
+            <th>
+                used by nr of guns
+            </th>
+
+
+        </tr>
+        <tr th:each="ammo : ${allAmmo}">
+            <td th:text="${ammo.ammoId}"></td>
+            <td th:text="${ammo.ammoName}"></td>
+            <td><a th:href="@{/ammo/detail/{calibre}(calibre=${ammo.ammoName})}" th:text="${ammo.ammoName}"></a> </td>
+            <td th:text="${ammo.getNumberOfGunsUsing()}"></td>
+
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
+    <br><br>
+    <a th:href="@{/ammo/new}">Why don't you add some ammo, we like ammo!</a>
+    <br>
+
+
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
 </html>
+
