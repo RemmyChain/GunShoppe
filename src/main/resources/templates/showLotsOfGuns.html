@@ -7,14 +7,11 @@
 
 <div th:replace="fragments/general :: navbar"></div>
 
-<div class="container">
+<div id="main-div" class="container">
 
-
-    <table>
+    <table id="item-1">
         <tr>
-            <th>
-                gunId
-            </th>
+
             <th>
                 gunName
             </th>
@@ -27,41 +24,22 @@
 
 
 
+
         </tr>
+
         <tr th:each="gun : ${allGuns}">
-            <td th:text="${gun.gunID}"></td>
+
             <td th:text="${gun.gunName}"></td>
-            <td th:text="${gun.ammo.ammoName}"></td>
+            <td><a th:href="@{/ammo/detail/{calibre}(calibre=${gun.ammo.ammoName})}" th:text="${gun.ammo.ammoName}"></a> </td>
             <td th:text="${gun.displayAttachments}"></td>
 
         </tr>
         <tr><br></tr>
-        <tr>
-            <th>
-                ammoId
-            </th>
-            <th>
-                ammoName
-            </th>
-            <th>
-                used by nr of guns
-            </th>
 
 
-        </tr>
-        <tr th:each="ammo : ${allAmmo}">
-            <td th:text="${ammo.ammoId}"></td>
-            <td th:text="${ammo.ammoName}"></td>
-            <td><a th:href="@{/ammo/detail/{calibre}(calibre=${ammo.ammoName})}" th:text="${ammo.ammoName}"></a> </td>
-            <td th:text="${ammo.getNumberOfGunsUsing()}"></td>
-
-        </tr>
     </table>
-    <br>
-    <a th:href="@{/gun/new}">Add a Gun, improve your neighbourhood</a>
-    <br><br>
-    <a th:href="@{/ammo/new}">Why don't you add some ammo, we like ammo!</a>
-    <br>
+
+    <img th:src="@{/images/gunliz.jpg}" alt="image" width="30%" height="30%" id="img-1">
 
 
 </div>

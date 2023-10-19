@@ -1,1 +1,15 @@
 
+#main-div {
+    display: flex;
+}
+
+#img-1 {
+    max-width: 50%;
+    float: right;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 723px){
+    #main-div {
+        flex-direction: column;
+    }
+}
