@@ -76,6 +76,30 @@ public class GunController {
 
     return "redirect:/";
   }
+  @GetMapping("/gun/delete/{name}")
+  private String deleteGun(@PathVariable("name") String name) {
+    Optional<Gun> optionalGun = gunRepository.findGunByGunName(name);
+
+    if (optionalGun.isEmpty()) {
+      return "redirect:/gun/overview";
+    }
+
+    gunRepository.delete(optionalGun.get());
+
+    return "redirect:/";
+  }
+  @GetMapping("/gun/detail/{name}")
+  private String showGunDetails(@PathVariable("name") String name, Model model) {
+    Optional<Gun> optionalGun = gunRepository.findGunByGunName(name);
+
+    if (optionalGun.isEmpty()) {
+      return "redirect:/gun/overview";
+    }
+
+    model.addAttribute("gunToBeShown", optionalGun.get());
+
+    return "gunDetail";
+  }
 
 
 }

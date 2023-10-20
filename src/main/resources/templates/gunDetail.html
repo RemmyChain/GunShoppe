@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Put a title here</title>
+</head>
+<body>
+
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class="container">
+    <table>
+        <tr>
+
+            <th>
+                gunName
+            </th>
+            <th>
+                ammoType
+            </th>
+            <th>
+                Optional attachments
+            </th>
+
+        </tr>
+
+        <tr>
+
+            <td th:text="${gunToBeShown.gunName}"></td>
+            <td><a th:href="@{/ammo/detail/{calibre}(calibre=${gunToBeShown.ammo.ammoName})}" th:text="${gunToBeShown.ammo.ammoName}"></a> </td>
+            <td th:text="${gunToBeShown.displayAttachments}"></td>
+
+        </tr>
+
+        <tr>
+            <a th:href="@{/gun/delete/{name}(name=${gunToBeShown.getGunName()})}">Delete</a>
+        </tr>
+
+    </table>
+
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+</body>
+</html>

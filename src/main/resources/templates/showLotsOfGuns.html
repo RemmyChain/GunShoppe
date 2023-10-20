@@ -22,14 +22,11 @@
                 Optional attachments
             </th>
 
-
-
-
         </tr>
 
         <tr th:each="gun : ${allGuns}">
 
-            <td th:text="${gun.gunName}"></td>
+            <td><a th:href="@{/gun/detail/{name}(name=${gun.gunName})}" th:text="${gun.gunName}"></a></td>
             <td><a th:href="@{/ammo/detail/{calibre}(calibre=${gun.ammo.ammoName})}" th:text="${gun.ammo.ammoName}"></a> </td>
             <td th:text="${gun.displayAttachments}"></td>
 

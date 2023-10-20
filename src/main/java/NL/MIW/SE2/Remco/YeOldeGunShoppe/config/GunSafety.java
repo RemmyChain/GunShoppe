@@ -28,6 +28,7 @@ public class GunSafety {
                         .antMatchers("/css/**", "/webjars/**").permitAll()
                         .antMatchers("/initialize").permitAll()
                         .antMatchers("/").permitAll()
+                        .antMatchers("/images/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin().and()
                 .logout().logoutSuccessUrl("/");

@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ammo specifications</title>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Put a title here</title>
 </head>
 <body>
 
-<h1>Specifications for ammunition type: <span th:text="${ammoToBeShown.ammoName}"></span></h1>
+<div th:replace="fragments/general :: navbar"></div>
 
-<table>
-    <tr>
-        <td>Ammunition:</td>
-        <td th:text="${ammoToBeShown.ammoName}"></td>
-    </tr>
+<div class="container">
+    <table>
+        <tr>
+            <td>Ammunition:</td>
+            <td th:text="${ammoToBeShown.ammoName}"></td>
+        </tr>
 
-    <tr>
-        <td>Used by guns:</td>
-        <td th:text="${ammoToBeShown.getNumberOfGunsUsing()}"></td>
-    </tr>
-    <tr th:each="gun : ${ammoToBeShown.usedByGuns}">
-        <td th:text="${gun.gunID}"></td>
-        <td th:text="${gun.gunName}"></td>
+        <tr>
+            <td>Used by guns:</td>
+            <td th:text="${ammoToBeShown.getNumberOfGunsUsing()}"></td>
+        </tr>
+        <tr th:each="gun : ${ammoToBeShown.usedByGuns}">
+            <td th:text="${gun.gunID}"></td>
+            <td th:text="${gun.gunName}"></td>
 
 
-    </tr>
-    <a href="/">BACK</a>
+        </tr>
 
-</table>
+
+    </table>
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
 </html>
+
+
