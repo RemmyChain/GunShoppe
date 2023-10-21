@@ -1,5 +1,6 @@
 package NL.MIW.SE2.Remco.YeOldeGunShoppe.repository;
 
+import NL.MIW.SE2.Remco.YeOldeGunShoppe.model.Ammo;
 import NL.MIW.SE2.Remco.YeOldeGunShoppe.model.Gun;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,5 +13,6 @@ import java.util.Optional;
  */
 public interface GunRepository extends JpaRepository<Gun, Long> {
     Optional<Gun> findGunByGunName(String gunName);
+    Optional<Gun> findGunByGunNameAndAmmo(String GunName, Ammo ammo);
 
 }

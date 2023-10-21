@@ -88,9 +88,16 @@ public class GunController {
 
     return "redirect:/";
   }
-  @GetMapping("/gun/detail/{name}")
-  private String showGunDetails(@PathVariable("name") String name, Model model) {
-    Optional<Gun> optionalGun = gunRepository.findGunByGunName(name);
+  @GetMapping("/gun/detail/{name}/{ammo}")
+  private String showGunDetails(@PathVariable("name") String name, @PathVariable("ammo") String ammo, Model model) {
+    Optional<Ammo> optionalAmmo = ammoRepository.findAmmoByAmmoName(ammo);
+    Ammo ammoQuery = new Ammo();
+
+    if (optionalAmmo.isPresent()){
+      ammoQuery = optionalAmmo.get();
+
+    }
+    Optional<Gun> optionalGun = gunRepository.findGunByGunNameAndAmmo(name, ammoQuery);
 
     if (optionalGun.isEmpty()) {
       return "redirect:/gun/overview";
