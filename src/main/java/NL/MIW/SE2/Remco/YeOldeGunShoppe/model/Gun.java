@@ -13,6 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Getter @Setter
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "GunName", "ammo_ammo_id" }) })
 public class Gun implements Comparable<Gun>{
     @Id @GeneratedValue
     private Long gunID;
