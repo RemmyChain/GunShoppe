@@ -69,12 +69,17 @@ public class GunController {
 
   @PostMapping("/gun/new")
   private String saveOrUpdateGun(@ModelAttribute("gun") Gun gunToBeSaved, BindingResult result) {
-    if (!result.hasErrors()) {
+
+    if (gunExists(gunToBeSaved)){
+      return "redirect:/gun/new";
+    }
+
+    if (!result.hasErrors()){
 
         gunRepository.save(gunToBeSaved);
     }
 
-    return "redirect:/";
+     return "redirect:/";
   }
   @GetMapping("/gun/delete/{name}")
   private String deleteGun(@PathVariable("name") String name) {
@@ -106,6 +111,10 @@ public class GunController {
     model.addAttribute("gunToBeShown", optionalGun.get());
 
     return "gunDetail";
+  }
+  public boolean gunExists(Gun gun){
+    Optional<Gun> gunQuery = gunRepository.findGunByGunNameAndAmmo(gun.getGunName(), gun.getAmmo());
+    return gunQuery.isPresent();
   }
 
 
