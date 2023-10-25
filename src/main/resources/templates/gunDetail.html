@@ -32,7 +32,12 @@
         </tr>
 
         <tr>
-            <a th:href="@{/gun/delete/{name}(name=${gunToBeShown.getGunName()})}">Delete</a>
+            <td>
+                <a th:href="@{/gun/delete/{name}(name=${gunToBeShown.getGunName()})}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/gun/edit/{name}(name=${gunToBeShown.getGunName()})}">Edit</a>
+            </td>
         </tr>
 
     </table>

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class GunShoppeUtiliser implements UserDetails {
 
     @Id @GeneratedValue
     private Long userId;
-
+    @Column(unique = true)
     private String username;
     private String password;
     @Override
