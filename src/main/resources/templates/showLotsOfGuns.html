@@ -28,7 +28,13 @@
 
             <td><a th:href="@{/gun/detail/{name}/{ammo}(name=${gun.gunName}, ammo=${gun.ammo.ammoName})}" th:text="${gun.gunName}"></a></td>
             <td><a th:href="@{/ammo/detail/{calibre}(calibre=${gun.ammo.ammoName})}" th:text="${gun.ammo.ammoName}"></a> </td>
-            <td th:text="${gun.displayAttachments}"></td>
+            <td>
+                <table>
+                    <tr th:each="attachment : ${gun.attachments}">
+                        <td th:text="${attachment.attachmentName}"></td>
+                    </tr>
+                </table>
+            </td>
 
         </tr>
         <tr><br></tr>
