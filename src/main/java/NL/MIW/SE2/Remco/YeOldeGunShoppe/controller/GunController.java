@@ -5,7 +5,6 @@ import NL.MIW.SE2.Remco.YeOldeGunShoppe.model.Gun;
 import NL.MIW.SE2.Remco.YeOldeGunShoppe.repository.AmmoRepository;
 import NL.MIW.SE2.Remco.YeOldeGunShoppe.repository.AttachmentRepository;
 import NL.MIW.SE2.Remco.YeOldeGunShoppe.repository.GunRepository;
-import NL.MIW.SE2.Remco.YeOldeGunShoppe.states.StateKeeper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +27,7 @@ public class GunController {
   private final GunRepository gunRepository;
   private final AmmoRepository ammoRepository;
   private final AttachmentRepository attachmentRepository;
+  private boolean editMode;
 
   public GunController(GunRepository gunRepository, AmmoRepository ammoRepository, AttachmentRepository attachmentRepository) {
     this.gunRepository = gunRepository;
@@ -55,12 +55,12 @@ public class GunController {
 
   @GetMapping("/gun/edit/{gunName}")
   private String showEditGunForm(@PathVariable("gunName") String gunName, Model model) {
-    StateKeeper.editMode = true;
+    editMode = true;
 
     Optional<Gun> optionalGun = gunRepository.findGunByGunName(gunName);
 
     if (optionalGun.isEmpty()) {
-      StateKeeper.switchAllOff();
+      editMode = false;
       return "redirect:/";
     }
 
@@ -74,7 +74,7 @@ public class GunController {
   @PostMapping("/gun/new")
   private String saveOrUpdateGun(@ModelAttribute("gun") Gun gunToBeSaved, BindingResult result) {
 
-    if (gunExists(gunToBeSaved) && !StateKeeper.editMode){
+    if (gunExists(gunToBeSaved) && !editMode){
       return "redirect:/gun/new";
     }
 
@@ -82,7 +82,7 @@ public class GunController {
 
         gunRepository.save(gunToBeSaved);
     }
-    StateKeeper.switchAllOff();
+    editMode = false;
      return "redirect:/";
   }
   @GetMapping("/gun/delete/{name}")
