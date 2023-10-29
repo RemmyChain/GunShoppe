@@ -53,11 +53,11 @@ public class GunController {
     return "gunForm";
   }
 
-  @GetMapping("/gun/edit/{gunName}")
-  private String showEditGunForm(@PathVariable("gunName") String gunName, Model model) {
+  @GetMapping("/gun/edit/{name}/{ammo}")
+  private String showEditGunForm(@PathVariable("name") String name, @PathVariable("ammo") String ammo, Model model) {
     editMode = true;
 
-    Optional<Gun> optionalGun = gunRepository.findGunByGunName(gunName);
+    Optional<Gun> optionalGun = getGun(name, ammo);
 
     if (optionalGun.isEmpty()) {
       editMode = false;
@@ -85,9 +85,9 @@ public class GunController {
     editMode = false;
      return "redirect:/";
   }
-  @GetMapping("/gun/delete/{name}")
-  private String deleteGun(@PathVariable("name") String name) {
-    Optional<Gun> optionalGun = gunRepository.findGunByGunName(name);
+  @GetMapping("/gun/delete/{name}/{ammo}")
+  private String deleteGun(@PathVariable("name") String name, @PathVariable("ammo") String ammo, Model model) {
+    Optional<Gun> optionalGun = getGun(name, ammo);
 
     if (optionalGun.isEmpty()) {
       return "redirect:/gun/overview";
@@ -97,16 +97,12 @@ public class GunController {
 
     return "redirect:/";
   }
+
+
+
   @GetMapping("/gun/detail/{name}/{ammo}")
   private String showGunDetails(@PathVariable("name") String name, @PathVariable("ammo") String ammo, Model model) {
-    Optional<Ammo> optionalAmmo = ammoRepository.findAmmoByAmmoName(ammo);
-    Ammo ammoQuery = new Ammo();
-
-    if (optionalAmmo.isPresent()){
-      ammoQuery = optionalAmmo.get();
-
-    }
-    Optional<Gun> optionalGun = gunRepository.findGunByGunNameAndAmmo(name, ammoQuery);
+    Optional<Gun> optionalGun = getGun(name, ammo);
 
     if (optionalGun.isEmpty()) {
       return "redirect:/gun/overview";
@@ -119,6 +115,17 @@ public class GunController {
   public boolean gunExists(Gun gun){
     Optional<Gun> gunQuery = gunRepository.findGunByGunNameAndAmmo(gun.getGunName(), gun.getAmmo());
     return gunQuery.isPresent();
+  }
+  private Optional<Gun> getGun(String name, String ammo) {
+    Optional<Ammo> optionalAmmo = ammoRepository.findAmmoByAmmoName(ammo);
+    Ammo ammoQuery = new Ammo();
+
+    if (optionalAmmo.isPresent()){
+      ammoQuery = optionalAmmo.get();
+
+    }
+    Optional<Gun> optionalGun = gunRepository.findGunByGunNameAndAmmo(name, ammoQuery);
+    return optionalGun;
   }
 
 

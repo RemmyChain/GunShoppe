@@ -33,10 +33,10 @@
 
         <tr>
             <td>
-                <a th:href="@{/gun/delete/{name}(name=${gunToBeShown.getGunName()})}">Delete</a>
+                <a th:href="@{/gun/delete/{name}/{ammo}(name=${gunToBeShown.gunName}, ammo=${gunToBeShown.ammo.ammoName})}">Delete</a>
             </td>
             <td>
-                <a th:href="@{/gun/edit/{name}(name=${gunToBeShown.getGunName()})}">Edit</a>
+                <a th:href="@{/gun/edit/{name}/{ammo}(name=${gunToBeShown.gunName}, ammo=${gunToBeShown.ammo.ammoName})}">Edit</a>
             </td>
         </tr>
 
